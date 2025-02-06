@@ -3,6 +3,7 @@
 import requests
 from flask import Flask, request, jsonify
 from sympy import isprime
+from waitress import serve
 
 # creates a Flask application instance to determine the root path of the application
 app = Flask(__name__)
@@ -70,14 +71,16 @@ def classify_number():
 
     # returns a json response containing the result of the functions on the number
     try:
-        return jsonify({
+        output = {
             "number": number,
             "is_prime": is_prime(number),
             "is_perfect": is_perfect(number),
             "digit_sum": digit_sum(number),
             "fun_fact": fun_fact(number),
             "properties": properties
-        }), 200
+        }
+        
+        return jsonify(output), 200
     except Exception as e:
         return jsonify({
             "number": "alphabet",
@@ -85,4 +88,4 @@ def classify_number():
         }), 400
 
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=5000)
+    serve(app, host="0.0.0.0", port=5000, threads=2)
