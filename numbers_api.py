@@ -85,4 +85,8 @@ def classify_number():
         }), 400
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     app.run(debug=False, host="0.0.0.0", port=5000)
+=======
+    app.run(debug=True)
+>>>>>>> fe968f64a97bbec54f5bc75d5476f1aab1f6a1da
