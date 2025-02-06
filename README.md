@@ -17,19 +17,19 @@ The API utilizes external resources to obtain the fun fact by calling [Numbers A
 
 ## Installation
 
-1. Clone the repository: 
+1. Clone the repository:
    `git clone https://github.com/omiete01/numbers_api.git` `cd numbers_api`
-2. Create a virtual environment: 
+2. Create a virtual environment:
    `python3 -m venv venv`
    `source venv/bin/activate`  # On Windows: venv\Scripts\activate
-3. Install the dependencies: 
+3. Install the dependencies:
    `pip3 install -r requirements.txt`
-4. Run the application locally: 
+4. Run the application locally:
    `waitress-serve --listen=0.0.0.0:5000 numbers_api:app`
 
 ## API Usage
 
-Open your browser and go to http://127.0.0.1:5000//api/classify-number?number=371
+Open your browser and go to <http://127.0.0.1:5000//api/classify-number?number=371>
 
 ✅ Success Response (200 OK):
 {

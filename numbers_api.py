@@ -55,14 +55,16 @@ def classify_number():
     number = request.args.get("number")
 
     # returns a json response if the number parameter is not provided
-    if not(number):
-        return jsonify({"error": "no number provided"}), 400
-
-    # if number conversion to integer fails, returns a json response with an error message
+    # 
+    
     try:
-        number = int(number)
+        # Convert input to float
+        number = float(number)
+        if number.is_integer():  # If the number is essentially an integer
+            number = int(number)
     except ValueError:
-        return jsonify({"error": "invalid number"}), 400
+        # Return 400 for invalid number
+        return jsonify({"number": number, "error": True}), 400
     
     properties = []
     if is_armstrong(number):
