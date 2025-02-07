@@ -54,23 +54,13 @@ def classify_number():
     # allows users to pass a number as parameter when making a request to the /number-info endpoint
     number = request.args.get("number")
 
-    # returns a json response if the number parameter is not provided
-    # if not(number):
-    #     return jsonify({"error": "no number provided"}), 400
-
-    # # if number conversion to integer fails, returns a json response with an error message
-    # try:
-    #     number = int(number)
-    # except ValueError:
-    #     return jsonify({"error": "invalid number"}), 400
-
     try:
-        # Convert input to float
+        # converts number to float
         number = float(number)
-        if number.is_integer():  # If the number is essentially an integer
+        if number.is_integer():  
             number = int(number)
     except ValueError:
-        # Return 400 for invalid number
+        # returns 400 for invalid number
         return jsonify({"number": number, "error": True}), 400
     
     properties = []
@@ -92,9 +82,9 @@ def classify_number():
         return jsonify(output), 200
     except Exception as e:
         return jsonify({
-            "number": "alphabet",
-            "error": True
-        }), 400
+            "error": True, 
+            "message": f"Error processing number: {e}"
+        }), 500
 
 if __name__ == "__main__":
     serve(app, host="0.0.0.0", port=5000, threads=2)
